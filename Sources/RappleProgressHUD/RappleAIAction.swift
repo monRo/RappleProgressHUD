@@ -41,8 +41,8 @@ extension RappleActivityIndicatorView {
     /** create & start */
     @objc class func startPrivateAnimating() {
         
-        sharedInstance.keyWindow.endEditing(true)
-        sharedInstance.keyWindow.isUserInteractionEnabled = false
+        sharedInstance.keyWindow?.endEditing(true)
+        sharedInstance.keyWindow?.isUserInteractionEnabled = false
         
         let progress = RappleActivityIndicatorView.sharedInstance
         
@@ -53,6 +53,7 @@ extension RappleActivityIndicatorView {
         progress.createProgressBG()
         
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            sharedInstance.keyWindow?.isUserInteractionEnabled = false
             
             progress.backgroundView?.alpha = 1.0
             
@@ -133,13 +134,13 @@ extension RappleActivityIndicatorView {
             
             UIView.animate(withDuration: 0.5, animations: { () -> Void in
                 sharedInstance.backgroundView?.alpha = 0.0
-                sharedInstance.keyWindow.tintAdjustmentMode = .automatic
-                sharedInstance.keyWindow.tintColorDidChange()
+                sharedInstance.keyWindow?.tintAdjustmentMode = .automatic
+                sharedInstance.keyWindow?.tintColorDidChange()
             }, completion: { (finished) -> Void in
                 sharedInstance.clearUIs()
                 sharedInstance.backgroundView?.removeFromSuperview()
                 sharedInstance.backgroundView = nil
-                sharedInstance.keyWindow.isUserInteractionEnabled = true
+                sharedInstance.keyWindow?.isUserInteractionEnabled = true
                 
                 if sharedInstance.attributes[RappleIndicatorStyleKey] as? String == RappleStyleText {
                     sharedInstance.dotCount = 0

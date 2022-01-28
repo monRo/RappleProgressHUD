@@ -45,11 +45,11 @@ extension RappleActivityIndicatorView {
             }
             backgroundView?.alpha = 1.0
             backgroundView?.isUserInteractionEnabled = false
-            keyWindow.addSubview(backgroundView!)
+            keyWindow?.addSubview(backgroundView!)
             
             let dic = ["BG": backgroundView!]
-            keyWindow.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[BG]|", options: .alignAllCenterY, metrics: nil, views: dic))
-            keyWindow.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[BG]|", options: .alignAllCenterX, metrics: nil, views: dic))
+            keyWindow?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[BG]|", options: .alignAllCenterY, metrics: nil, views: dic))
+            keyWindow?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[BG]|", options: .alignAllCenterX, metrics: nil, views: dic))
         }
     }
     
@@ -69,6 +69,8 @@ extension RappleActivityIndicatorView {
     
     /** create Apple style UIs */
     @objc func createAppleUIs() {
+        guard let keyWindow = keyWindow else { return }
+        
         var sqWidth: CGFloat = 55
         // calc center values
         let size = calcTextSize(textLabel)
@@ -138,6 +140,8 @@ extension RappleActivityIndicatorView {
     
     /** create circular UIs */
     @objc func createCircleUIs() {
+        guard let keyWindow = keyWindow else { return }
+        
         let size = calcTextSize(textLabel)
         let yi = addAnimatingCircle(twoSided: showProgress == false)
         if showProgress == true {
@@ -158,6 +162,8 @@ extension RappleActivityIndicatorView {
     
     /** create text UIs */
     @objc func createTextUIs() {
+        guard let keyWindow = keyWindow else { return }
+        
         // add label and size
         let size = calcTextSize(textLabel)
         activityLable = UILabel(frame: CGRect(x: 0, y: 0, width: size.width+1, height: size.height+1))
@@ -209,6 +215,7 @@ extension RappleActivityIndicatorView {
     
     /** create circulat activity indicators */
     @objc func addAnimatingCircle(twoSided: Bool) -> CGFloat {
+        guard let keyWindow = keyWindow else { return .zero }
         
         let size = calcTextSize(textLabel)
         let r = radius
@@ -271,6 +278,7 @@ extension RappleActivityIndicatorView {
     
     /** create & set circular progress bar */
     @objc func addProgresCircle(_ progress: Float, pgText: String?) {
+        guard let keyWindow = keyWindow else { return }
         
         if progressLayer == nil {
             let size = calcTextSize(textLabel)

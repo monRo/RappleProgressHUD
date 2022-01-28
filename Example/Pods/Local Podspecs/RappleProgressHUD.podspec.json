@@ -1,6 +1,6 @@
 {
   "name": "RappleProgressHUD",
-  "version": "4.0.1",
+  "version": "4.1",
   "summary": "Activity & Progress indicator for Swift.",
   "description": "Flexible & user-friendly Activity & Progress indicator for Swift 5.",
   "homepage": "https://github.com/rjeprasad/RappleProgressHUD",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/rjeprasad/RappleProgressHUD.git",
-    "tag": "4.0.1"
+    "tag": "4.1"
   },
   "swift_versions": "5.0",
   "platforms": {
