@@ -107,11 +107,12 @@ extension RappleActivityIndicatorView {
     /** get key window */
     @objc var keyWindow: UIWindow? {
         if #available(iOS 13.0, *) {
-            return UIApplication.shared.connectedScenes
-                .filter { $0.activationState == .foregroundActive }
-                .compactMap { $0 as? UIWindowScene }
-                .first?.windows
-                .filter { $0.isKeyWindow }.first
+            for scene in UIApplication.shared.connectedScenes {
+                if let keyWindow = (scene as? UIWindowScene)?.windows.first(where: { $0.isKeyWindow }) {
+                    return keyWindow
+                }
+            }
+            return nil
         } else {
             return UIApplication.shared.keyWindow
         }
